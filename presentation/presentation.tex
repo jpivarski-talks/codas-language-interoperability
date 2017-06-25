@@ -94,7 +94,7 @@
 \vspace{0.4 cm}
 \renewcommand{\arraystretch}{1.3}
 \mbox{\hspace{-0.5 cm}\begin{tabular}{p{0.32\linewidth} p{0.34\linewidth} p{0.31\linewidth}}
-C++ & Java/JVM & Python \\\hline
+C/C++ & Java/JVM & Python \\\hline
 \mbox{compiles to machine} code & \mbox{compiles to VM;} \mbox{optimizes} at runtime & interpreted bytecode; runtime type-checks \\
 \uncover<2->{\vspace{-0.9\baselineskip}\mbox{fastest; reproducible} performance & slow start and intermittent pauses, but relatively high throughput & \mbox{quick to start, but} terrible throughput} \\
 \uncover<3->{\vspace{-0.9\baselineskip}\mbox{bare metal and high} abstractions coexist & \mbox{choice of language,} some high, some low & \mbox{generally only one} way to do things} \\
@@ -116,8 +116,64 @@ C++ & Java/JVM & Python \\\hline
 \end{itemize}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Degrees of cohabitation}
+\vspace{0.5 cm}
+\begin{columns}[t]
+\column{0.31\linewidth}
+\textcolor{darkblue}{\underline{Same process}} \hfill \mbox{ }
 
+\vspace{0.25 cm}
+C/C++, Java, and Python can live in the same process, single or multiple threads, calling each other's functions (with care).
+
+\vspace{0.25 cm}
+Statically compiled or dynamically loaded.
+
+\column{0.37\linewidth}
+\begin{uncoverenv}<2->
+\textcolor{darkblue}{\underline{Same machine}}
+
+\vspace{0.25 cm}
+It's safer and easier to use multiple processes, but now all communication is asynchronous; concurrency is an issue.
+
+\vspace{0.25 cm}
+\vspace{\baselineskip}
+Shared memory (fast and dangerous), pipes, localhost sockets, or even intermediate files (don't, though).
+\end{uncoverenv}
+
+\column{0.31\linewidth}
+\begin{uncoverenv}<3->
+\textcolor{darkblue}{\underline{Same planet}}
+
+\vspace{0.25 cm}
+Communicating over a network allows for flexible scale-out, though at a cost of performance.
+
+\vspace{0.25 cm}
+\vspace{2\baselineskip}
+Raw sockets, ZeroMQ sockets, HTTP, message queuing systems.
+\end{uncoverenv}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Same process: static and dynamic}
+\vspace{0.25 cm}
+\begin{block}{Java/JVM}
+Ships with a Java Native Interface (JNI) to statically compile native functions into JAR files (Java shared libraries). Not often used in the Java community, prone to error.
+
+\vspace{0.25 cm}
+But the Java Native Access (JNA) library is a good way to dynamically load .so files (native shared library). \hfill \textcolor{red}{[jna.ipynb]}
+\end{block}
+
+\begin{uncoverenv}<2->
+\begin{block}{Python}
+Ships with a C API that is very good: nearly all high-performance libraries for Python use it.
+
+\vspace{0.25 cm}
+Some high-level wrappers on the C API: Cython, Boost::Python, SWIG, TPython (ROOT).
+
+\vspace{0.25 cm}
+Also has a builtin ctypes library to dynamically load .so files; a little-known gem. \hfill \textcolor{red}{[ctypes.ipynb]}
+\end{block}
+\end{uncoverenv}
 \end{frame}
 
 
