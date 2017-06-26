@@ -178,7 +178,8 @@ Ships with a Java Native Interface (JNI) to statically compile native functions 
 
 \vspace{0.25 cm}
 But the Java Native Access (JNA) library is a good way to dynamically load .so files (native shared library). \hfill \textcolor{red}{[jna.ipynb]}
-\end{block}\end{uncoverenv}
+\end{block}
+\end{uncoverenv}
 \end{frame}
 
 \begin{frame}{Shared object files: the least common denominator}
@@ -213,9 +214,30 @@ Worse still, most of the C++ concepts that extend beyond C are either encoded in
 \end{center}
 \end{frame}
 
+\begin{frame}{The easy case: raw arrays}
+\vspace{0.5 cm}
+Nearly every language has some construct for a contiguous buffer of fixed-width values.
 
+\vspace{0.25 cm}
+\begin{uncoverenv}<2->
+\begin{block}{Python}
+The builtin ``array'' module is not widely used, but Numpy is the basis for the whole scientific Python ecosystem, including all the machine learning libraries.
 
+\vspace{0.25 cm}
+Numpy arrays can allocate their own buffers or wrap arbitrary pointers to view any data anywhere. \hfill \textcolor{red}{[numpy.ipynb]}
+\end{block}
+\end{uncoverenv}
 
+\vspace{0.25 cm}
+\begin{uncoverenv}<3->
+\begin{block}{Java/JVM}
+Called ``off-heap memory,'' meaning data not accessible to the garbage collector, this was an unintended hole in the Java specification.
+
+\vspace{0.25 cm}
+Widely used for performance (Spark, OpenHFT). \hfill \textcolor{red}{[offheap.ipynb]}
+\end{block}
+\end{uncoverenv}
+\end{frame}
 
 
 
