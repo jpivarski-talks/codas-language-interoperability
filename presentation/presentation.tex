@@ -156,14 +156,6 @@ Raw sockets, ZeroMQ sockets, HTTP, message queuing systems.
 
 \begin{frame}{Same process: static and dynamic}
 \vspace{0.25 cm}
-\begin{block}{Java/JVM}
-Ships with a Java Native Interface (JNI) to statically compile native functions into JAR files (Java shared libraries). Not often used in the Java community, prone to error.
-
-\vspace{0.25 cm}
-But the Java Native Access (JNA) library is a good way to dynamically load .so files (native shared library). \hfill \textcolor{red}{[jna.ipynb]}
-\end{block}
-
-\begin{uncoverenv}<2->
 \begin{block}{Python}
 Ships with a C API that is very good: nearly all high-performance libraries for Python use it.
 
@@ -173,8 +165,34 @@ Some high-level wrappers on the C API: Cython, Boost::Python, SWIG, TPython (ROO
 \vspace{0.25 cm}
 Also has a builtin ctypes library to dynamically load .so files; a little-known gem. \hfill \textcolor{red}{[ctypes.ipynb]}
 \end{block}
-\end{uncoverenv}
+
+\begin{uncoverenv}<2->
+\begin{block}{Java/JVM}
+Ships with a Java Native Interface (JNI) to statically compile native functions into JAR files (Java shared libraries). Not often used in the Java community, prone to error.
+
+\vspace{0.25 cm}
+But the Java Native Access (JNA) library is a good way to dynamically load .so files (native shared library). \hfill \textcolor{red}{[jna.ipynb]}
+\end{block}\end{uncoverenv}
 \end{frame}
 
+\begin{frame}{Shared object files: the least common denominator}
+
+
+
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}{Projects}
+\begin{enumerate}
+\item JNA has callbacks, pointers, and structs just like ctypes. Repeat the GSL root-finding example with JNA.
+
+
+\end{enumerate}
+\end{frame}
 
 \end{document}
