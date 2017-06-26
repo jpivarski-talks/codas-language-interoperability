@@ -116,6 +116,12 @@ C/C++ & Java/JVM & Python \\\hline
 \end{itemize}
 \end{frame}
 
+\begin{frame}{}
+\begin{center}
+\textcolor{darkblue}{\LARGE Moving functions across languages}
+\end{center}
+\end{frame}
+
 \begin{frame}{Degrees of cohabitation}
 \vspace{0.5 cm}
 \begin{columns}[t]
@@ -176,23 +182,62 @@ But the Java Native Access (JNA) library is a good way to dynamically load .so f
 \end{frame}
 
 \begin{frame}{Shared object files: the least common denominator}
+\vspace{0.5 cm}
+Unless compiled with the DEBUG flag, .so files only contain function names and their bytecode.
+\begin{itemize}
+\item no number of arguments
+\item no argument types
+\item no return types
+\end{itemize}
+That's why you need .h files to compile a C program. \hspace{0.25 cm}{\tt :)}
 
+\vspace{0.25 cm}
+\begin{uncoverenv}<2->
+Worse still, most of the C++ concepts that extend beyond C are either encoded in mangled names or not at all.
+\end{uncoverenv}
 
+\vspace{0.25 cm}
+\begin{uncoverenv}<3->
+\href{https://rosettacode.org/wiki/Call_a_foreign-language_function}{\textcolor{blue}{All languages}} (including Javascript in Nodejs) can run C functions, given the type info, but very few can run C++. Notably,
+\begin{itemize}
+\item Python (through Cython)
+\item Julia (through Cxx.jl)
+\item R (through Rcpp)
+\end{itemize}
+\end{uncoverenv}
+\end{frame}
 
-
-
+\begin{frame}{}
+\begin{center}
+\textcolor{darkblue}{\LARGE Moving data across languages}
+\end{center}
 \end{frame}
 
 
 
 
 
-\begin{frame}{Projects}
+
+
+
+
+\begin{frame}{}
+\begin{center}
+\textcolor{darkblue}{\LARGE Projects}
+\end{center}
+\end{frame}
+
+\begin{frame}{Form pairs or small groups to solve one}
 \begin{enumerate}
 \item JNA has callbacks, pointers, and structs just like ctypes. Repeat the GSL root-finding example with JNA.
+\item Do the ``time'' and ``gsl\_deriv\_central'' examples with Cython, rather than ctypes.
+\item Numba compiles Python code into native bytecode so that it will run faster. But that also gives us a {\it native} function pointer to pass to C code. Open \textcolor{red}{[numba.ipynb]} and try it.
+
+
 
 
 \end{enumerate}
 \end{frame}
 
 \end{document}
+
