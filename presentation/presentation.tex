@@ -239,9 +239,29 @@ Widely used for performance (Spark, OpenHFT). \hfill \textcolor{red}{[offheap.ip
 \end{uncoverenv}
 \end{frame}
 
+\begin{frame}{The hard case: arbitrary objects}
+Different languages have different type systems. When moving structured data across languages, some sort of translation is necessary.
+\begin{itemize}
+\item language A knows language B's conventions and converts
+\item bring everything down to the lowest common denominator
+\item define a common meta-typesystem
+\end{itemize}
 
+\vspace{0.25 cm}
+\begin{uncoverenv}<2->
+The least common denominator is C's structs.
 
+\vspace{0.5 cm}
+Numpy handles this case as well. \hfill \textcolor{red}{[structs.ipynb]}
+\end{uncoverenv}
+\end{frame}
 
+\begin{frame}{Common meta-typesystem}
+Transfer protocols such as Google Protobuf, Thrift, and Avro each defines a language-neutral typesystem with only the essentials (arbitrary-length lists, structs, unions, etc.). Dozens of languages know how to read and write these protocols.
+
+\vfill
+A project to keep an eye on: Apache Arrow seeks to define a standard {\it in-memory} format so that R DataFrames, Pandas DataFrames, and Spark DataFrames can share a pointer to the same memory. (Hopefully ROOT's TDataFrame will follow suit!)
+\end{frame}
 
 \begin{frame}{}
 \begin{center}
@@ -250,16 +270,13 @@ Widely used for performance (Spark, OpenHFT). \hfill \textcolor{red}{[offheap.ip
 \end{frame}
 
 \begin{frame}{Form pairs or small groups to solve one}
-\begin{enumerate}
+\vspace{0.3 cm}
+\begin{enumerate}\setlength{\itemsep}{0.2 cm}
 \item JNA has callbacks, pointers, and structs just like ctypes. Repeat the GSL root-finding example with JNA.
 \item Do the ``time'' and ``gsl\_deriv\_central'' examples with Cython, rather than ctypes.
 \item Numba compiles Python code into native bytecode so that it will run faster. But that also gives us a {\it native} function pointer to pass to C code. Open \textcolor{red}{[numba.ipynb]} and try it.
-\item In Python, {\tt multiprocessing.RawArray(ctypes.c\_double, N)} creates an array of $N$ doubles that can be shared among multiple processes (if you fork them as instances of {\tt multiprocessing.Process}). Cast that memory as Numpy in the shared processes to do work in parallel.
+\item {\tt\small multiprocessing.RawArray(ctypes.c\_double, N)} creates an array of $N$ doubles that can be shared among multiple processes (if you fork them as instances of {\tt\small multiprocessing.Process}). Cast that memory as Numpy in the shared processes to do work in parallel.
 \item If we have access to McMillan's KNLs, try using {\it numa\_alloc\_local(nbytes)} in ``libnuma.so'' to allocate Numpy arrays on MCDRAM.
-
-
-
-
 \end{enumerate}
 \end{frame}
 
