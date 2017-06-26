@@ -254,6 +254,8 @@ Widely used for performance (Spark, OpenHFT). \hfill \textcolor{red}{[offheap.ip
 \item JNA has callbacks, pointers, and structs just like ctypes. Repeat the GSL root-finding example with JNA.
 \item Do the ``time'' and ``gsl\_deriv\_central'' examples with Cython, rather than ctypes.
 \item Numba compiles Python code into native bytecode so that it will run faster. But that also gives us a {\it native} function pointer to pass to C code. Open \textcolor{red}{[numba.ipynb]} and try it.
+\item In Python, {\tt multiprocessing.RawArray(ctypes.c\_double, N)} creates an array of $N$ doubles that can be shared among multiple processes (if you fork them as instances of {\tt multiprocessing.Process}). Cast that memory as Numpy in the shared processes to do work in parallel.
+\item If we have access to McMillan's KNLs, try using {\it numa\_alloc\_local(nbytes)} in ``libnuma.so'' to allocate Numpy arrays on MCDRAM.
 
 
 
