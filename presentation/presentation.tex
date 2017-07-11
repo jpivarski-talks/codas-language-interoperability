@@ -139,10 +139,10 @@ Statically compiled or dynamically loaded.
 \textcolor{darkblue}{\underline{Same machine}}
 
 \vspace{0.25 cm}
-It's safer and easier to use multiple processes, but now all communication is asynchronous; concurrency is an issue.
+It's safer and easier to use multiple processes, but now all communication is asynchronous.
 
 \vspace{0.25 cm}
-\vspace{\baselineskip}
+\vspace{2\baselineskip}
 Shared memory (fast and dangerous), pipes, localhost sockets, or even intermediate files (don't, though).
 \end{uncoverenv}
 
@@ -256,7 +256,18 @@ Numpy handles this case as well. \hfill \textcolor{red}{[structs.ipynb]}
 \end{uncoverenv}
 \end{frame}
 
-\begin{frame}{Common meta-typesystem}
+\begin{frame}{Stuck this here because it's the best place it fits}
+\vspace{0.5 cm}
+{\LARGE GPUs!}
+
+\vspace{0.5 cm}
+Communication between CPU and GPU is largely through arrays, possibly arrays of structs. Numpy is just general enough to cover this case.
+
+\vspace{0.5 cm}
+\mbox{ } \hfill \textcolor{red}{[pycuda.ipynb]} \hfill \mbox{ }
+\end{frame}
+
+\begin{frame}{Sharing more complex datatypes between languages}
 Transfer protocols such as Google Protobuf, Thrift, and Avro each defines a language-neutral typesystem with only the essentials (arbitrary-length lists, structs, unions, etc.). Dozens of languages know how to read and write these protocols.
 
 \vfill
