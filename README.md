@@ -6,7 +6,7 @@ These require many dependencies, so we will use one of 50 prepared machines. You
 
 # After the day of the tutorial
 
-I will shut down all the machines after the tutorial is over, but if you want to run it on your own, you can do so by loading the [Amazon Web Services](https://aws.amazon.com/) AMI:
+I will shut down all the machines after the tutorial is over, but if you want to run it on your own, you can do so by loading the [Amazon Web Services](https://aws.amazon.com/) machine image:
 
    * Launch an Amazon instance using image `ami-cbc5c9dd` and machine type `g2.2xlarge`, making sure that port 8888 is open. You will need an AWS account to do this; read Amazon's documentation if you need help.
    * You don't need to ssh into it: Jupyter is automatically loaded.
