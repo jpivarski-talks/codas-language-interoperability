@@ -1,4 +1,4 @@
-# For the day of the tutorial
+# On the day of the tutorial
 
 The talk is in [presentation.pdf](https://github.com/jpivarski/codas-language-interoperability/raw/master/presentation.pdf), which points to mini-notebooks (`*.ipynb`) along the way.
 
